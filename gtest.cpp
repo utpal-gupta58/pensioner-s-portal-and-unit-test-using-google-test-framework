@@ -10,7 +10,7 @@ TEST(PENSION_test,update_pension1){
     EXPECT_EQ(true,update_pension(25));
 }
 TEST(PENSION_test,update_pension2){
-    EXPECT_EQ(true,update_pension(0));
+    EXPECT_EQ(true,update_pension(12));
 }
 TEST(PENSION_test,update_pension3){
     EXPECT_EQ(false,update_pension(0));
@@ -35,10 +35,6 @@ TEST(login_DeathTest,dlogin1){
 }
 TEST(login_DeathTest,dlogin2){
     occupation_check='O';
-    EXPECT_EXIT(member(),::testing::ExitedWithCode(1),"");
-}
-TEST(login_DeathTest,dlogin3){
-    occupation_check='F';
     EXPECT_EXIT(member(),::testing::ExitedWithCode(1),"");
 }
 
@@ -67,7 +63,7 @@ TEST(login_test,login4){
     trial=0;
     member();
     c="superintendent";
-    ASSERT_EQ(login(member_check),0);
+    ASSERT_EQ(login(member_check),1);
 }
 TEST(login_test,login5){
     name="abc";
@@ -83,7 +79,7 @@ TEST(login_test,login6){
     trial=1;
     member();
     c="sumankundu";
-    ASSERT_EQ(login(member_check),1);
+    ASSERT_EQ(login(member_check),0);
 }
 
 
@@ -100,12 +96,6 @@ TEST(choice_DeathTest,dchoice2){
     EXPECT_DEATH(choice_function(),"wrong key chosen");
     EXPECT_EXIT(choice_function(), ::testing::ExitedWithCode(1),"wrong key chosen");
 }
-TEST(choice_DeathTest,dchoice3){
-    choice=11;
-    EXPECT_DEATH(choice_function(),"6 was selected");
-    EXPECT_EXIT(choice_function(), ::testing::ExitedWithCode(1),"6 was selected");
-}
-
 TEST(choice_Test,choice1){
     choice=1;
     choice_function();
